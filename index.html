@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portopolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+  .hide-el {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: .7s ease;
+  }
+
+  .show-el {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+</style>
+
+</head>
+<body class="bg-black">
+
+  <!-- Navbar -->
+<nav class="fixed top-0 w-full bg-gray-900 shadow-lg p-1 z-50">
+  <div class="flex justify-between items-center h-16 px-5">
+    
+    <!-- Logo -->
+    <h1 class="text-white text-2xl font-bold hover:skew-y-12 duration-500">Aisy<span class="text-cyan-500">Arkaan.</span></h1>
+
+    <!-- Hamburger Button -->
+    <button id="menu-btn" class="text-white text-3xl md:hidden">☰</button>
+
+    <!-- Desktop Menu -->
+    <ul class="hidden md:flex space-x-8">
+      <li><a href="#beranda" class="hover:text-cyan-500 text-white">Beranda</a></li>
+      <li><a href="#tentang" class="hover:text-cyan-500 text-white">Tentang</a></li>
+      <li><a href="#skills" class="hover:text-cyan-500 text-white">Skills</a></li>
+      <li><a href="#poto" class="hover:text-cyan-500 text-white">Poto</a></li>
+      <li><a href="#karya" class="hover:text-cyan-500 text-white">Karya</a></li>
+      <li><a href="#kontak" class="hover:text-cyan-500 text-white">Kontak</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+<!-- MOBILE SIDEBAR -->
+<div id="mobile-menu" class="fixed top-0 right-0 w-64 h-full bg-gray-800 text-white transform translate-x-full transition-transform duration-300 md:hidden z-50">
+
+  <!-- Close Button -->
+  <button id="close-btn" class="text-3xl absolute right-4 top-4">❌</button>
+
+  <ul class="mt-20 flex flex-col space-y-6 px-6">
+    <li><a href="#beranda" class="hover:text-cyan-400">Beranda</a></li>
+    <li><a href="#tentang" class="hover:text-cyan-400">Tentang</a></li>
+    <li><a href="#skills" class="hover:text-cyan-400">Skills</a></li>
+    <li><a href="#poto" class="hover:text-cyan-400">Poto</a></li>
+    <li><a href="#karya" class="hover:text-cyan-400">Karya</a></li>
+    <li><a href="#kontak" class="hover:text-cyan-400">Kontak</a></li>
+  </ul>
+</div>
+
+
+
+  <section id="beranda" class="py-32 ">
+  <div class="flex flex-col md:flex-row items-center gap-20">
+
+    <!-- Gambar -->
+     <div class="ml-10">
+    <img class="h-96 rounded-e-full border-3 border-cyan-300 shadow-xl hover:translate-1/6 transition duration-700" src="orang.jpg" alt="">
+    </div>
+
+    <!-- Teks -->
+    <div class="ml-5">
+      <p class="text-white text-2xl font-mono hover:font-bold hover:text-cyan-300 ">Saya</p>
+      <h2 class="text-white text-5xl font-bold"><span class="hover:text-cyan-300">Aisy</span> <span class="hover:text-cyan-300">Arkaan</span>
+         <span class="hover:text-cyan-300">Abdurrahman</span></h2>
+      <p class="text-3xl text-cyan-300"><span class="hover:text-white">Seorang</span class="hover:text-white"> <span class="hover:text-white">Pelajar</span> <span class="hover:text-white">Biasa</span></p>
+
+      <div class="flex space-x-4 mt-6">
+        <a href="https://www.instagram.com/aisyarkaan.a/" target="_blank" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:scale-125 transition duration-300 hover:bg-cyan-500">
+          <i class="fa fa-instagram text-white"></i>
+        </a>
+        <a href="http://www.youtube.com/@aisyarkaanabdurrahman" target="_blank" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:scale-125 transition duration-300 hover:bg-cyan-500">
+          <i class="fa fa-youtube-play text-white"></i>
+        </a>
+        <a href="https://github.com/hatihatiadabot7-dev" target="_blank" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:scale-125 transition duration-300 hover:bg-cyan-500">
+          <i class="fa fa-github text-white"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--Tentang-->
+<section id="tentang" class="py-32">
+
+  <article class="mx-4 sm:mx-10 lg:mx-32"> <!-- responsive spacing -->
+
+    <img class="float-none sm:float-right h-56 rounded-lg sm:h-72 border-2 border-cyan-300 hover:-rotate-250 duration-300 mb-6 sm:mb-0"
+    src="kuning.jpg" />
+
+    <h2 class="text-white text-4xl sm:text-5xl font-bold border-cyan-300">Diriku</h2>
+
+    <p class="text-white text-xl sm:text-2xl">Penuntut 
+      <span class="text-cyan-300 font-serif border-b-2">Ilmu</span>
+    </p>
+
+    <hr class="text-cyan-300 w-3/4 sm:w-2/3 my-2">
+
+    <p class="text-white mt-4">
+      saya Aisy Arkaan Abdurrahman kelas 10 SMA sekolah di SMA IT HSI BOARDING SCHOOL 
+      <b>Lahir: (Kota: Jakarta Tahun: 2099 Bulan: Mei Tanggal: 05)</b> saya tertarik dengan mempelajari teknologi seperti belajar membuat website dan 
+      saya tertarik juga mempelajari agama Islam dan mempelajari bahasa arab
+    </p>
+
+    <div class="my-6">
+      <a class="text-white font-serif px-4 py-2 bg-cyan-500 border-2 border-cyan-300 rounded-full hover:bg-black hover:text-cyan-300 transition duration-300"
+      target="_blank" href="https://www.instagram.com/aisyarkaan.a/">Instagram</a>
+    </div>
+
+  </article>
+
+</section>
+
+
+<!-- Skills -->
+  <section id="skills" class="py-28 m-5">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-6xl font-bold text-center mb-16 text-white">مهارتي</h2>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-gray-900 border-2 border-cyan-300 p-8 rounded-lg shadow-lg hover:transform hover:scale-105 transition-all duration-300" data-aos="fade-up-right">
+          <img src="https://i.pinimg.com/originals/4d/fa/65/4dfa65c5851469a66bd0bacf62b08e24.jpg" alt="Bahasa Arab" class="w-24 h-24 mx-auto mb-4 hover:border-3 border-cyan-300 rounded-full duration-75">
+          <h5 class="text-2xl font-bold text-center mb-4 text-white">BAHASA ARAB</h5>
+          <p class="text-gray-300 text-center mb-4">
+             saya mempunya basic untuk berbicara bahasa arab 
+          </p>
+          <div class="text-center">
+            <a href="https://id.wikipedia.org/wiki/Bahasa_Arab" target="_blank" class="inline-block border-2 border-sky-400 text-sky-400 py-2 px-6 rounded-full hover:text-white hover:bg-linear-to-r from-cyan-500 to-blue-500 transition duration-300">
+              Mari Belajar
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-gray-900 border-2 border-cyan-300 p-8 rounded-lg shadow-lg hover:transform hover:scale-105 transition-all duration-300" data-aos="fade-up-left">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIBel9p-WfA65D30zN3ppQBwG3Op6qCbUeFQ&s" alt="Futsal" class="w-24 h-24 mx-auto mb-4 hover:border-3 border-cyan-300 rounded-full duration-75">
+          <h5 class="text-2xl font-bold text-center mb-4 text-white">FUTSAL</h5>
+          <p class="text-gray-300 text-center mb-4">
+            Futsal adalah hobi saya maka dari itu saya sering bermain Futsal
+          </p>
+          <div class="text-center">
+            <a href="https://id.wikipedia.org/wiki/Futsal" target="_blank" class="inline-block border-2 border-sky-400 text-sky-400 py-2 px-6 rounded-full hover:text-white hover:bg-linear-to-r from-cyan-500 to-blue-500 transition duration-300">
+              Mari Belajar
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-gray-900 border-2 border-cyan-300 p-8 rounded-lg shadow-lg hover:transform hover:scale-105 transition-all duration-300" data-aos="fade-down-right">
+          <img src="https://muhammad-hamka.vercel.app/images/html.png.png" alt="HTML 5" class="w-24 h-24 mx-auto mb-4 hover:border-3 rounded-full border-cyan-300 duration-75">
+          <h5 class="text-2xl font-bold text-center mb-4 text-white">HTML 5</h5>
+          <p class="text-gray-300 text-center mb-4">
+           dengan basic yang sedikit, saya bisa membuat website dari HTML 5 ini
+          </p>
+          <div class="text-center">
+            <a href="https://id.wikipedia.org/wiki/HTML" target="_blank" class="inline-block border-2 border-sky-400 text-sky-400 py-2 px-6 rounded-full hover:text-white hover:bg-linear-to-r from-cyan-500 to-blue-500 transition duration-300">
+              Mari Belajar
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="my-20 mx-5 sm:mx-20 lg:mx-40">
+
+  <div class="flex justify-between items-center">
+    <p class="font-bold text-white text-lg sm:text-xl">BAHASA ARAB</p>
+    <span class="text-white text-sm sm:text-base">93%</span>
+  </div>
+  <div class="w-full bg-gray-700 h-[5px] rounded-full">
+    <div class="w-[93%] bg-cyan-300 h-[5px]"></div>
+  </div>
+
+  <div class="flex justify-between items-center mt-4">
+    <p class="font-bold text-white text-lg sm:text-xl">IT</p>
+    <span class="text-white text-sm sm:text-base">30%</span>
+  </div>
+  <div class="w-full bg-gray-700 h-[5px] rounded-full">
+    <div class="w-[30%] bg-cyan-300 h-[5px]"></div>
+  </div>
+
+  <div class="flex justify-between items-center mt-4">
+    <p class="text-white text-lg sm:text-xl font-bold">Futsal</p>
+    <span class="text-white text-sm sm:text-base">87%</span>
+  </div>
+  <div class="w-full bg-gray-700 h-[5px] rounded-full">
+    <div class="w-[87%] bg-cyan-300 h-[5px]"></div>
+  </div>
+
+  <div class="flex justify-between items-center mt-4">
+    <p class="text-white text-lg sm:text-xl font-bold">DINIYYAH</p>
+    <span class="text-white text-sm sm:text-base">79%</span>
+  </div>
+  <div class="w-full bg-gray-700 h-[5px] rounded-full">
+    <div class="w-[79%] bg-cyan-300 h-[5px]"></div>
+  </div>
+
+  <div class="flex justify-between items-center mt-4">
+    <p class="text-white text-lg sm:text-xl font-bold">MOBILE LEGEND</p>
+    <span class="text-white text-sm sm:text-base">90%</span>
+  </div>
+  <div class="w-full bg-gray-700 h-[5px] rounded-full">
+    <div class="w-[90%] bg-cyan-300 h-[5px]"></div>
+  </div>
+
+</div>
+
+
+
+  </section>
+
+  
+
+  <!--Foto-->
+<section id="poto" class="py-16 m-5">
+  <div class="text-center p-16">
+    <a class="text-5xl font-bold text-white hover:text-cyan-300 transition duration-300" href="#">GALERI</a>
+  </div>
+
+  <!-- GRID SECTION -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+    <!-- CARD -->
+    <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden border-2 border-cyan-300 hover:scale-105 duration-300">
+      <img class="w-full h-56 object-cover hover:scale-110 transition duration-300" src="smp.jpg" alt="">
+      <div class="p-5 text-white">
+        <h3 class="text-xl font-semibold">Foto SMP</h3>
+        <span class="mt-2 text-gray-300">Pondok Pesantren Al-Ihsan Bekasi</span>
+        
+      </div>
+    </div>
+
+    <!-- COPY & EDIT UNTUK YANG LAIN -->
+    <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden border-2 border-cyan-300 hover:scale-105 duration-300">
+      <img class="w-full h-56 object-cover hover:scale-110 transition duration-300" src="piket.jpg" alt="">
+      <div class="p-5 text-white">
+        <h3 class="text-xl font-semibold">Waktu Piket</h3>
+        <span class="mt-2 text-gray-300">Bersih-bersih Masjid</span>
+        
+      </div>
+    </div>
+
+    <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden border-2 border-cyan-300 hover:scale-105 duration-300">
+      <img class="w-full h-56 object-cover hover:scale-110 transition duration-300" src="kutoarjo.jpg" alt="">
+      <div class="p-5 text-white">
+        <h3 class="text-xl font-semibold">Bocah Gireng</h3>
+        <span class="mt-2 text-gray-300">4 orang yang sangat menyeramkan</span>
+        
+      </div>
+    </div>
+
+    <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden border-2 border-cyan-300 hover:scale-105 duration-300">
+      <img class="w-full h-56 object-cover hover:scale-110 transition duration-300" src="sopo ganteng.jpg" alt="">
+      <div class="p-5 text-white">
+        <h3 class="text-xl font-semibold">Sopo Ganteng</h3>
+        <span class="mt-2 text-gray-300">Sinetron MNCTV</span>
+        
+      </div>
+    </div>
+
+    <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden border-2 border-cyan-300 hover:scale-105 duration-300">
+      <img class="w-full h-56 object-cover hover:scale-110 transition duration-300" src="denis.jpg" alt="">
+      <div class="p-5 text-white">
+        <h3 class="text-xl font-semibold ">Denis Ireng</h3>
+        <span class="mt-2 text-gray-300">Sinetron RCTI</span>
+        
+      </div>
+    </div>
+
+    <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden border-2 border-cyan-300 hover:scale-105 duration-300">
+      <img class="w-full h-56 object-cover hover:scale-110 transition duration-300" src="jalan-raya.jpg" alt="">
+      <div class="p-5 text-white">
+        <h3 class="text-xl font-semibold">Jalan Biasa </h3>
+        <span class="mt-2 text-gray-300">Kabupaten Purworejo</span>
+        
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="karya" class="py-16 m-5">
+  <div class="text-center p-16">
+    <a class="text-5xl font-bold text-white" href="#">
+      <span class="hover:text-cyan-300">KARYA</span>
+      <span class="text-white hover:text-cyan-300">KU</span>
+    </a>
+  </div>
+
+  <!-- GRID RESPONSIVE -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+    
+    <!-- CARD 1 -->
+    <div class="bg-gray-800 p-12 border-2 border-cyan-300 rounded-lg">
+      <p class="text-white font-serif">
+        ini vidio membahas tentang peraturan di pondok pesantren HSI BOARDING SCHOOL
+      </p>
+      <div class="my-5 flex flex-wrap gap-3">
+        <a class="text-white font-serif px-4 py-2 bg-cyan-500 border-2 border-cyan-300 rounded-full 
+        hover:bg-black fa fa-youtube-play hover:text-cyan-300 transition duration-300"
+        target="_blank" href="https://youtube.com/shorts/w_HdmtKHsXw?si=-t8GRsyuv-hmOujy"> Youtube</a>
+
+        <a class="text-white font-serif px-4 py-2 bg-cyan-500 border-2 border-cyan-300 rounded-full 
+        hover:bg-black hover:text-cyan-300 transition duration-300 fa fa-instagram"
+        target="_blank" href="https://www.instagram.com/aisyarkaan.a/"> Instagram</a>
+      </div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="bg-gray-800 p-12 border-2 border-cyan-300 rounded-lg">
+      <p class="text-white font-serif">
+        ini vidio membahas tentang orang tua saya di rumah dan apa yang mereka lakukan
+      </p>
+      <div class="my-5">
+        <a class="text-white font-serif px-4 py-2 bg-cyan-500 border-2 border-cyan-300 rounded-full 
+        hover:bg-black fa fa-youtube-play hover:text-cyan-300 transition duration-300"
+        target="_blank" href="https://youtube.com/shorts/w_HdmtKHsXw?si=-t8GRsyuv-hmOujy"> Youtube</a>
+      </div>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="bg-gray-800 p-12 border-2 border-cyan-300 rounded-lg">
+      <p class="text-white font-serif">
+        ini vidio saya menyetorkan Juz 30 ketika ujian akhir semester bulan desember 2025
+      </p>
+      <div class="my-5">
+        <a class="text-white font-serif px-4 py-2 bg-cyan-500 border-2 border-cyan-300 rounded-full 
+        hover:bg-black fa fa-youtube-play hover:text-cyan-300 transition duration-300"
+        target="_blank" href="https://youtube.com/shorts/w_HdmtKHsXw?si=-t8GRsyuv-hmOujy"> Youtube</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FULL WIDTH RESPONSIVE CARD -->
+  <div class="grid grid-cols-1 my-5">
+    <div class="bg-gray-800 p-12 border-2 border-cyan-300 rounded-lg text-center">
+      <p class="text-white font-serif">ini vidio saya menjelaskan Surat Al-Kafiruun</p>
+      <div class="my-5">
+        <a class="text-white font-serif px-4 py-2 bg-cyan-500 border-2 border-cyan-300 rounded-full 
+        hover:bg-black fa fa-youtube-play hover:text-cyan-300 transition duration-300"
+        target="_blank" href="https://youtube.com/shorts/w_HdmtKHsXw?si=-t8GRsyuv-hmOujy"> Youtube</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!--Kontak-->
+<section id="kontak" class="bg-gray-800 py-24">
+  <div class="text-center mb-10 px-4">
+    <h2 class="text-white text-3xl sm:text-4xl font-bold my-2">Aisy Akaan Abdurrahman</h2>
+    <p class="text-gray-400 font-serif font-bold text-sm sm:text-base">kalo mau ngechet aku tinggal salin nomor ini dan cari di WhatsApp</p>
+    <p class="text-white my-1 font-bold text-xl sm:text-2xl"><i class="fa fa-whatsapp hover:text-cyan-300"></i> +62 858-1729-1121</p>
+  </div>
+
+  <div class="ml-3 sm:ml-5 px-4 text-center sm:text-left">
+    <p class="text-gray-400 font-serif font-bold text-sm sm:text-base">tapi kalo mau ig silahkan pencet di bawah ini 👇</p>
+  </div>
+
+  <div class="my-3 ml-0 sm:ml-96 flex justify-center sm:justify-start">
+    <a class="text-white font-serif hover:text-cyan-300"
+    target="_blank" href="https://www.instagram.com/aisyarkaan.a/">
+      <img class="w-7 ml-6" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/2048px-Instagram_logo_2022.svg.png" alt="">
+    </a>
+  </div>
+
+  <div class="text-center my-5 px-4">
+    <p class="inline-flex text-sm sm:text-md text-gray-400">Copyright by Aisy Arkaan</p>
+  </div>
+</section>
+
+
+
+
+
+<script>
+
+  const menuBtn = document.getElementById('menu-btn');
+  const closeBtn = document.getElementById('close-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  menuBtn?.addEventListener('click', () => {
+    mobileMenu.classList.remove('translate-x-full');
+  });
+
+  closeBtn?.addEventListener('click', () => {
+    mobileMenu.classList.add('translate-x-full');
+  });
+
+  // Smooth Scroll
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        // Tutup menu mobile kalau ada
+        if (mobileMenu) mobileMenu.classList.add('translate-x-full');
+      }
+    });
+  });
+
+  // Navbar scroll effect
+  window.addEventListener('scroll', function() {
+    const navbar = document.querySelector('nav');
+    if (navbar) {
+      if (window.scrollY > 50) {
+        navbar.classList.add('bg-opacity-95');
+      } else {
+        navbar.classList.remove('bg-opacity-95');
+      }
+    }
+  });
+
+  // ANIMASI SCROLL UTAMA
+  const animateElements = document.querySelectorAll("section, img, h2, p, div, a, span, i");
+
+  const scrollObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show-el");
+      } else {
+        // Kalau elemen keluar lewat BAWAH layar → hilangkan lagi
+        if (entry.boundingClientRect.top > window.innerHeight) {
+          entry.target.classList.remove("show-el");
+        }
+      }
+
+    });
+  }, { threshold: 0.2 });
+
+  animateElements.forEach((el) => {
+    el.classList.add("hide-el");
+    scrollObserver.observe(el);
+  });
+  
+  
+
+</script>
+
+</body>
+</html>
