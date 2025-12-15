@@ -1,63 +1,155 @@
 <!DOCTYPE html>
-<html class="scroll-smooth" lang="en">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documann</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Documann — HORROR SCROLL</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+/* SMOOTH SCROLL */
+html {
+  scroll-behavior: smooth;
+}
+
+/* CHAOS ANIMATIONS */
+@keyframes shake {0%{transform:translate(0,0);}25%{transform:translate(-5px,5px);}50%{transform:translate(5px,-5px);}75%{transform:translate(-5px,-5px);}100%{transform:translate(0,0);}}
+@keyframes glitch {0%{text-shadow:3px 0 red,-3px 0 cyan;}20%{text-shadow:-3px 0 lime,3px 0 magenta;}40%{text-shadow:3px 3px yellow,-3px -3px blue;}60%{text-shadow:-2px 2px red,2px -2px cyan;}80%{text-shadow:4px 0 magenta,-4px 0 lime;}100%{text-shadow:3px 0 red,-3px 0 cyan;}}
+@keyframes flicker {0%,19%,21%,23%,25%,54%,56%,100%{opacity:1;}20%,22%,24%,55%{opacity:0.2;}}
+@keyframes randomMove {0%{transform:translate(0,0) rotate(0deg);}25%{transform:translate(5px,-5px) rotate(-2deg);}50%{transform:translate(-5px,5px) rotate(2deg);}75%{transform:translate(5px,5px) rotate(-1deg);}100%{transform:translate(-5px,-5px) rotate(1deg);}}
+@keyframes noise {0%{background-position:0 0;}100%{background-position:200% 200%;}}
+
+/* CLASSES */
+.blink {animation: flicker 1s infinite;}
+.shake {animation: shake 0.2s infinite;}
+.glitch {animation: glitch 0.2s infinite;}
+.randomMove {animation: randomMove 0.5s infinite;}
+
+/* TV STATIC */
+body::before {
+  content:'';
+  position: fixed; top:0; left:0;
+  width:100%; height:100%;
+  background: repeating-linear-gradient(0deg, rgba(255,255,255,0.05) 0, rgba(0,0,0,0.05) 1px),
+              repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0, rgba(0,0,0,0.05) 1px);
+  z-index:0;
+  animation: noise 0.1s infinite linear;
+  mix-blend-mode: difference;
+  filter: blur(1px);
+}
+
+/* GHOST */
+.ghost {position:absolute;width:50px;height:50px;background:rgba(255,255,255,0.1);border-radius:50%;box-shadow:0 0 30px rgba(255,0,0,0.8);pointer-events:none;z-index:50;opacity:0;transition:opacity 0.1s;}
+
+/* RED FLASH */
+.flash {position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(255,0,0,0.3);pointer-events:none;z-index:100;opacity:0;transition:opacity 0.1s;}
+
+/* EMOJI */
+.emoji {display:inline-block; animation:randomMove 0.5s infinite; margin:0 2px; font-size:1.2em;}
+</style>
 </head>
-<body>
-  <nav class="fixed right-0 top-0 p-5 w-full bg-black z-50">
-    <div class="flex justify-end">
-      <ul class="flex gap-5 text-white">
-        <li><a class="hover:text-yellow-500" href="#home">Home</a></li>
-        <li><a class="hover:text-yellow-500" href="#about">About</a></li>
-        <li><a class="hover:text-yellow-500" href="#contact">Contact</a></li>
-      </ul>
-    </div>
+<body class="bg-black text-red-600 font-mono overflow-y-scroll relative">
+
+<!-- NAVBAR -->
+<nav class="fixed top-0 w-full bg-black/90 backdrop-blur border-b-2 border-red-900 z-50 flex justify-between p-4">
+  <ul class="flex gap-6 text-xs sm:text-sm uppercase tracking-widest font-black">
+    <li><a class="glitch blink randomMove" href="#home">Home 💀👻</a></li>
+    <li><a class="glitch shake randomMove" href="#about">About 🩸😱</a></li>
+    <li><a class="glitch blink shake randomMove" href="#contact">Contact 👹☠️</a></li>
+  </ul>
+  <div class="text-red-700 font-black text-lg bg-black px-2 py-1 border border-red-900 shake randomMove">
+    DOCUMANN
+  </div>
 </nav>
 
-<section id="home" class="py-28 m-5">
-  <div class="flex justify-end items-center ">
-    <div class="text-end">
-
-      <h2 class="hover:opacity-25 text-lg hover:text-yellow-800">DUA ORANG MENGERIKAN</h2>
-      <p class="font-bold hover:opacity-25">hanya portopolio biasa</p>
-
-      <img class="outline rounded-xl my-5 w-36 rotate-x-15 -rotate-y-30" src="bro.jpg" alt="">
-
-    </div>
+<!-- HOME -->
+<section id="home" class="min-h-screen flex flex-col sm:flex-row items-center justify-center pt-32 px-6 gap-6 relative z-10">
+  <div class="bg-black/80 p-6 border-2 border-red-800 text-red-600 shake glitch randomMove">
+    <h1 class="text-5xl sm:text-7xl font-black tracking-widest shake glitch randomMove">
+      DUA ORANG <span class="emoji">💀👻</span>
+    </h1>
+    <h2 class="text-3xl sm:text-5xl font-extrabold text-red-500 blink shake randomMove mt-2">
+      MENGERIKAN <span class="emoji">😱🩸</span>
+    </h2>
+    <p class="mt-4 text-sm text-red-400 shake glitch randomMove">
+      portfolio ini menyeramkan <span class="emoji">👹☠️</span>
+    </p>
   </div>
-
+  <img src="bro.jpg" alt="" class="w-32 sm:w-48 border-4 border-red-900 rounded shadow-lg hover:shadow-red-700/70 hover:scale-110 transition duration-200 shake glitch randomMove">
 </section>
 
-
-<section id="about" class="py-48">
-<div class="text-center">
-
-  <p class="text-3xl font-serif font-bold text-red-400"><span class="hover:text-black">dua</span> <span class="hover:text-cyan-300">orang</span> <span class="hover:text-yellow-400">tersebut</span>
-    <span class="hover:text-blue-500">abis</span> <span class="hover:text-violet-600">nyemplung</span> <span class="hover:text-teal-800">dari</span> <span class="hover:text-amber-900">kali</span> <span class="hover:text-lime-300">yang</span> <span class="hover:text-fuchsia-400">sangat</span>
-    <span class="hover:text-fuchsia-950">kotor</span> <br>
-  <span class="hover:text-gray-600">tapi</span> <span class="hover:text-sky-700">mereka</span> <span class="hover:text-orange-500">berdua</span> <span class="hover:text-rose-600">tetap</span> <span class="hover:text-lime-500">berani</span> <span class="hover:text-yellow-500">dan</span> <span class="hover:text-pink-600">nyaman</span>
-  <span class="hover:text-blue-500">berenang</span> <span class="hover:text-yellow-600">walaupun</span> <br>
-  <span class="hover:text-green-500">kondisi</span> <span class="hover:text-fuchsia-800">air</span> <span class="hover:text-neutral-700">bau</span> <span class="hover:text-blue-600">bebek</span> <span class="hover:text-violet-500">yang</span> <span class="hover:text-pink-500">abis</span> <span class="hover:text-orange-400">dimandiin</span> 
-</p>
-
-
-</div>
-</section>
-
-<section id="contact" class="py-48">
-
-    <p class="ml-36 text-xl">kaga ada kontak wkwkwkwk</p>
-
-  <div class=" m-5 text-end text-xl font-bold">
-    <h2>kalo mau liat portopolio yang lengkapnya tinggal klik di bawah ini aja</h2>
-  </div>
-  
-  <div class="flex justify-center">
-    <a class="opacity-25 bg-violet-600 px-4 p-2 font-bold rounded-lg text-white font-serif hover:opacity-100 transition duration-500" href="porto.html">KLIKKK</a>
+<!-- ABOUT -->
+<section id="about" class="py-32 px-6 border-t-2 border-red-900 bg-black/90 z-10 relative">
+  <div class="max-w-5xl mx-auto text-center">
+    <p class="text-lg sm:text-3xl font-black leading-snug tracking-widest text-red-500 shake glitch randomMove">
+      <span class="inline-block hover:text-white">dua <span class="emoji">💀</span></span>
+      <span class="inline-block hover:text-gray-300">orang <span class="emoji">👻</span></span>
+      <span class="inline-block hover:text-red-600 shake">tersebut <span class="emoji">🩸</span></span>
+      <span class="inline-block hover:text-red-800 blink">abis <span class="emoji">😱</span></span>
+      <span class="inline-block hover:text-red-500">nyemplung <span class="emoji">👹</span></span>
+    </p>
+    <p class="mt-10 text-xs text-red-400 blink shake glitch randomMove">
+      membaca ini bikin merinding <span class="emoji">☠️🕷️🕸️</span>
+    </p>
   </div>
 </section>
+
+<!-- CONTACT -->
+<section id="contact" class="py-32 px-6 border-t-2 border-red-900 bg-black/90 z-10 relative">
+  <p class="text-center sm:text-left text-red-600 text-lg shake blink glitch randomMove">
+    kaga ada kontak, jangan tanya <span class="emoji">💀👻🩸</span>
+  </p>
+
+  <div class="mt-8 text-center sm:text-end text-xl font-black uppercase tracking-widest glitch shake randomMove">
+    <h2 class="bg-red-800 text-red-50 p-2 border border-red-900 inline-block hover:text-white shake glitch randomMove">
+      klik kalo berani <span class="emoji">😱👹</span>
+    </h2>
+  </div>
+
+  <div class="mt-12 flex justify-center">
+    <a href="porto.html" class="bg-red-900 text-red-50 px-8 py-4 font-black uppercase border-2 border-red-700 hover:bg-black hover:text-red-500 hover:scale-110 transition duration-200 shake glitch randomMove">
+      KLIKKK!!! <span class="emoji">🕷️🕸️</span>
+    </a>
+  </div>
+</section>
+
+<footer class="py-6 text-center text-sm bg-black text-red-600 border-t-2 border-red-900 shake glitch randomMove z-10">
+  ultimate horror chaos: scrollable + auto scroll optional + ghosts + emojis 💀👻🩸
+</footer>
+
+<!-- JS HORROR EFFECTS -->
+<div id="ghostContainer"></div>
+<div id="flash" class="flash"></div>
+
+<script>
+// spawn ghosts
+const ghostContainer = document.getElementById('ghostContainer');
+function spawnGhost() {
+  const ghost = document.createElement('div');
+  ghost.classList.add('ghost');
+  ghost.style.top = Math.random()*window.innerHeight+'px';
+  ghost.style.left = Math.random()*window.innerWidth+'px';
+  ghostContainer.appendChild(ghost);
+  setTimeout(()=>{ghost.style.opacity=1;},50);
+  setTimeout(()=>{ghost.style.opacity=0; ghost.remove();},500+Math.random()*800);
+}
+setInterval(spawnGhost,250);
+
+// red flash random
+const flash = document.getElementById('flash');
+setInterval(()=>{ flash.style.opacity=0.3; setTimeout(()=>flash.style.opacity=0,100); },1500+Math.random()*2000);
+
+// OPTIONAL: auto scroll
+// uncomment dibawah kalau mau auto scroll
+/*
+let scrollPos = 0;
+function autoScroll() {
+  scrollPos += 1; // scroll speed
+  if(scrollPos > document.body.scrollHeight - window.innerHeight) scrollPos = 0;
+  window.scrollTo(0, scrollPos);
+  requestAnimationFrame(autoScroll);
+}
+autoScroll();
+*/
+</script>
 </body>
 </html>
