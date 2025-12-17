@@ -342,6 +342,48 @@
     }
   }, 6000);
 
+  /* =====================================
+   IMAGE HORROR COLOR SHIFT (5s)
+===================================== */
+const horrorFilters = [
+  "contrast(180%) saturate(200%) hue-rotate(20deg)",      // darah kemerahan
+  "invert(1) contrast(150%)",                              // negatif rusak
+  "sepia(1) contrast(170%) brightness(80%)",               // luka lama
+  "hue-rotate(300deg) saturate(250%) contrast(140%)",     // ungu sakit
+  "grayscale(1) contrast(200%) brightness(70%)"           // mati pucat
+];
+
+const horrorImgs = document.querySelectorAll("img");
+
+setInterval(() => {
+  if (!horrorImgs.length) return;
+
+  const img = horrorImgs[Math.floor(Math.random() * horrorImgs.length)];
+  const filter = horrorFilters[Math.floor(Math.random() * horrorFilters.length)];
+
+  img.style.transition = "filter 0.15s linear, transform 0.15s linear";
+  img.style.filter = filter;
+  img.style.transform = "scale(1.02) skewX(0.5deg)";
+
+  // efek flicker luka
+  let flickerCount = 0;
+  const flicker = setInterval(() => {
+    img.style.opacity = Math.random() * 0.4 + 0.6;
+    flickerCount++;
+    if (flickerCount > 4) {
+      clearInterval(flicker);
+    }
+  }, 60);
+
+  // balik normal
+  setTimeout(() => {
+    img.style.filter = "";
+    img.style.transform = "";
+    img.style.opacity = "";
+  }, 600);
+
+}, 1500);
+
 
   // ===============================
   // 12. FAKE CONNECTION DROP
