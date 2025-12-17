@@ -84,7 +84,7 @@
   <div class="red-flash"></div>
 
   <!-- NAVBAR -->
-  <nav class="fixed scroll-m-0 top-0 w-full bg-black border-b border-green-500 z-50 p-4">
+  <nav class="sticky top-0 w-full bg-black border-b border-green-500 z-50 p-4">
     <ul class="flex justify-end gap-6 text-sm">
       <li><a class="hover:text-red-500" href="#home">HOME</a></li>
       <li><a class="hover:text-red-500" href="#about">DATA</a></li>
@@ -566,6 +566,98 @@ document.querySelectorAll("img").forEach(img => {
   img.addEventListener("touchstart", startShake);
   img.addEventListener("touchend", stopShake);
 });
+
+/* =====================================
+   22. GLITCH TEXT SPAWNER (EVERY SECOND)
+===================================== */
+const chaosTextsID = [
+  "JANGAN LIAT KE BELAKANG",
+  "LU HARUSNYA BERHENTI",
+  "LAYAR INI NGELIAT BALIK",
+  "INI BUKAN WEBSITE BIASA",
+  "DATA LU KEKUNCI",
+  "LU UDAH KEJAUHAN",
+  "MEREKA TAU",
+  "ADA YANG IKUT BACA",
+  "BROWSER LU DIAWASI",
+  "JANGAN LANJUT",
+  "LU TELAT SADAR",
+  "INI SALAH",
+  "KELUAR SEKARANG",
+  "ADA DI BALIK LAYAR",
+  "STOP SCROLL",
+  "INI BUKAN BUG",
+  "ITU BUKAN GAMBAR",
+  "LU BUKAN SENDIRIAN"
+];
+
+const chaosTextsEN = [
+  "ACCESS VIOLATION",
+  "SYSTEM WATCHING",
+  "MEMORY CORRUPTED",
+  "DO NOT TRUST THIS PAGE",
+  "UNKNOWN OBSERVER",
+  "SESSION COMPROMISED",
+  "STOP INTERACTING",
+  "YOU WERE WARNED",
+  "EYES OPEN",
+  "SIGNAL LOST",
+  "TRACKING ENABLED",
+  "THIS IS NOT SAFE",
+  "ERROR_0xDEAD",
+  "WHY ARE YOU STILL HERE"
+];
+
+function spawnChaosText() {
+  const t = document.createElement("div");
+  const useID = Math.random() > 0.5;
+
+  t.textContent = useID
+    ? chaosTextsID[Math.floor(Math.random() * chaosTextsID.length)]
+    : chaosTextsEN[Math.floor(Math.random() * chaosTextsEN.length)];
+
+  t.style.position = "fixed";
+  t.style.top = Math.random() * 100 + "%";
+  t.style.left = Math.random() * 100 + "%";
+  t.style.fontSize = Math.random() * 14 + 9 + "px";
+  t.style.fontFamily = "Courier New, monospace";
+  t.style.fontWeight = Math.random() > 0.7 ? "bold" : "normal";
+  t.style.letterSpacing = Math.random() * 0.4 + "em";
+  t.style.color = Math.random() > 0.85 ? "#ff0033" : "#00ff88";
+  t.style.opacity = "0";
+  t.style.pointerEvents = "none";
+  t.style.whiteSpace = "nowrap";
+  t.style.zIndex = "996";
+  t.style.textShadow = "0 0 8px currentColor";
+  t.style.transform = `rotate(${Math.random() * 10 - 5}deg)`;
+  t.style.transition = "opacity 0.3s linear";
+
+  document.body.appendChild(t);
+
+  // fade in
+  setTimeout(() => {
+    t.style.opacity = "0.6";
+  }, 20);
+
+  // random flicker
+  const flicker = setInterval(() => {
+    t.style.opacity = Math.random() * 0.6;
+  }, 120);
+
+  // remove
+  setTimeout(() => {
+    clearInterval(flicker);
+    t.style.opacity = "0";
+    setTimeout(() => t.remove(), 500);
+  }, 2000);
+}
+
+// spawn BANYAK per detik
+setInterval(() => {
+  for (let i = 0; i < 8; i++) {
+    spawnChaosText();
+  }
+}, 900);
 </script>
 
 </body>
