@@ -84,17 +84,19 @@
   <div class="red-flash"></div>
 
   <!-- NAVBAR -->
-<nav class="sticky top-0 w-full bg-black border-b border-green-500 z-50 p-4">
+<nav id="navSystem"
+  class="fixed top-0 left-0 w-full bg-black border-b border-green-500 z-[9000] p-4">
   <ul class="flex justify-end gap-6 text-sm">
-    <li><a id="menu-home" class="hover:text-red-500" href="#home">HOME.<span>EXE</span></a></li>
-    <li><a id="menu-data" class="hover:text-red-500" href="#about">DATA.<span>LOG</span></a></li>
-    <li><a id="menu-contact" class="hover:text-red-500" href="#contact">CONTACT.<span>VOID</span></a></li>
+    <li><a class="hover:text-red-500" href="#home">HOME.EXE</a></li>
+    <li><a class="hover:text-red-500" href="#about">DATA.LOG</a></li>
+    <li><a class="hover:text-red-500" href="#contact">CONTACT.NULL</a></li>
   </ul>
 </nav>
 
 
+
   <!-- HOME -->
-  <section id="home" class="pt-40 pb-32 px-6">
+  <section id="home" class="pt-32 pb-32 px-6">
     <div class="text-right">
       <h1 class="text-4xl font-serif sm:text-6xl glitch">
         PORTOPOLIO BIASA.
@@ -159,6 +161,25 @@
 
 
   <script>
+  // ===============================
+  // NAV BIAR RUSAK
+  // ===============================
+  let lastY = window.scrollY;
+const nav = document.getElementById("navSystem");
+
+window.addEventListener("scroll", () => {
+  const currentY = window.scrollY;
+
+  if (currentY > lastY && currentY > 80) {
+    nav.style.transform = "translateY(-100%)";
+  } else {
+    nav.style.transform = "translateY(0)";
+  }
+
+  lastY = currentY;
+});
+
+
   // ===============================
   // 1. RANDOM GLITCH TITLE
   // ===============================
@@ -1062,8 +1083,8 @@ window.addEventListener("scroll", () => {
 });
 
 /* =====================================
-   29. ENTRY TRAP WARNING (ONE TIME)
-   FULL 7 SECONDS + EXTRA HORROR TEXT
+   29. ENTRY TRAP WARNING (RESPONSIVE)
+   ONE TIME – 7 SECONDS – MOBILE SAFE
 ===================================== */
 
 window.addEventListener("load", function () {
@@ -1081,28 +1102,33 @@ window.addEventListener("load", function () {
   trap.style.transition = "opacity 0.6s";
   trap.style.pointerEvents = "none";
   trap.style.fontFamily = "Courier New, monospace";
+  trap.style.textAlign = "center";
+  trap.style.padding = "0 16px";
 
   trap.innerHTML = `
     <div id="trap-main"
       style="
         color:#ff0033;
-        font-size:4rem;
         font-weight:bold;
-        letter-spacing:0.4em;
+        font-size:clamp(1.8rem, 6vw, 4rem);
+        letter-spacing:clamp(0.15em, 1.5vw, 0.35em);
         text-shadow:0 0 30px red;
         animation:pulse 1.2s infinite;
+        line-height:1.2;
+        word-break:break-word;
+        max-width:100%;
       ">
       KAMU TELAH TERJEBAK
     </div>
 
     <div id="trap-sub"
       style="
-        margin-top:30px;
-        font-size:14px;
+        margin-top:20px;
+        font-size:clamp(0.65rem, 2.5vw, 0.9rem);
         color:#00ff88;
-        opacity:0.7;
-        letter-spacing:0.3em;
-        text-align:center;
+        opacity:0.75;
+        letter-spacing:0.25em;
+        max-width:90%;
       ">
       sesi ini tidak bisa dihentikan
     </div>
@@ -1110,40 +1136,39 @@ window.addEventListener("load", function () {
 
   document.body.appendChild(trap);
 
-  /* === STYLE ANIMATION === */
+  /* === ANIMATION STYLE === */
   const style = document.createElement("style");
   style.innerHTML = `
     @keyframes pulse {
       0% { opacity: 1; }
-      50% { opacity: 0.6; }
+      50% { opacity: 0.55; }
       100% { opacity: 1; }
     }
   `;
   document.head.appendChild(style);
 
-  /* === MUNCUL SETELAH 1 DETIK === */
+  /* === SHOW AFTER 1s === */
   setTimeout(() => {
     trap.style.opacity = "1";
   }, 1000);
 
-  /* === GLITCH SHAKE === */
+  /* === SOFT GLITCH (MOBILE SAFE) === */
   const glitch = setInterval(() => {
-    const x = Math.random() * 10 - 5;
-    const y = Math.random() * 10 - 5;
+    const x = Math.random() * 6 - 3;
+    const y = Math.random() * 6 - 3;
     trap.style.transform = `translate(${x}px, ${y}px)`;
-  }, 70);
+  }, 90);
 
-  /* === KATA-KATA TAMBAHAN (BERGANTI) === */
+  /* === ROTATING HORROR TEXT === */
   const horrorLines = [
     "LAYAR INI MELIHAT BALIK",
-    "KAMU HARUSNYA TUTUP TADI",
-    "DATA KAMU SUDAH DIBACA",
-    "TIDAK ADA TOMBOL KELUAR",
-    "INI BUKAN ERROR",
-    "INI DISENGAJA",
-    "KAMU TELAT SADAR",
-    "SESI TIDAK PRIVAT",
-    "MEREKA SUDAH DI SINI"
+    "INI BUKAN BUG",
+    "KAMU HARUSNYA PERGI",
+    "DATA SUDAH DIREKAM",
+    "TIDAK ADA MODE AMAN",
+    "AKSES TIDAK PRIVAT",
+    "KAMU TERLALU DALAM",
+    "TERLAMBAT UNTUK KELUAR"
   ];
 
   const sub = trap.querySelector("#trap-sub");
@@ -1152,17 +1177,18 @@ window.addEventListener("load", function () {
   const textLoop = setInterval(() => {
     sub.textContent = horrorLines[idx % horrorLines.length];
     idx++;
-  }, 900);
+  }, 1000);
 
-  /* === HILANG SETELAH 7 DETIK TOTAL === */
+  /* === END AFTER ~7s === */
   setTimeout(() => {
     clearInterval(glitch);
     clearInterval(textLoop);
     trap.style.opacity = "0";
     trap.style.transform = "";
     setTimeout(() => trap.remove(), 800);
-  }, 8000); // total tampil ±7 detik
+  }, 8000);
 });
+
 
 
 </script>
