@@ -817,7 +817,7 @@ function systemTakeover() {
     takeover.style.transform = "";
     takeover.style.filter = "";
     setTimeout(() => takeover.remove(), 500);
-  }, 6000);
+  }, 5000);
 }
 
 // pertama kali (5 detik setelah load)
@@ -825,7 +825,7 @@ setTimeout(() => {
   systemTakeover();
 
   // ulang tiap 15 detik
-  setInterval(systemTakeover, 16000);
+  setInterval(systemTakeover, 15000);
 
 }, 4000);
 
@@ -940,7 +940,7 @@ function systemFloodTakeover() {
 /* === START LOOP === */
 setTimeout(() => {
   systemFloodTakeover();
-  setInterval(systemFloodTakeover, 22000);
+  setInterval(systemFloodTakeover, 20000);
 }, 4000);
 
 
