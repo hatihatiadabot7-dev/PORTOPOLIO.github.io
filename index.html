@@ -1061,6 +1061,109 @@ window.addEventListener("scroll", () => {
     `contrast(${100 + depth * 50}%) brightness(${100 - depth * 20}%)`;
 });
 
+/* =====================================
+   29. ENTRY TRAP WARNING (ONE TIME)
+   FULL 7 SECONDS + EXTRA HORROR TEXT
+===================================== */
+
+window.addEventListener("load", function () {
+  const trap = document.createElement("div");
+
+  trap.style.position = "fixed";
+  trap.style.inset = "0";
+  trap.style.background = "#000";
+  trap.style.display = "flex";
+  trap.style.flexDirection = "column";
+  trap.style.alignItems = "center";
+  trap.style.justifyContent = "center";
+  trap.style.zIndex = "9999";
+  trap.style.opacity = "0";
+  trap.style.transition = "opacity 0.6s";
+  trap.style.pointerEvents = "none";
+  trap.style.fontFamily = "Courier New, monospace";
+
+  trap.innerHTML = `
+    <div id="trap-main"
+      style="
+        color:#ff0033;
+        font-size:4rem;
+        font-weight:bold;
+        letter-spacing:0.4em;
+        text-shadow:0 0 30px red;
+        animation:pulse 1.2s infinite;
+      ">
+      KAMU TELAH TERJEBAK
+    </div>
+
+    <div id="trap-sub"
+      style="
+        margin-top:30px;
+        font-size:14px;
+        color:#00ff88;
+        opacity:0.7;
+        letter-spacing:0.3em;
+        text-align:center;
+      ">
+      sesi ini tidak bisa dihentikan
+    </div>
+  `;
+
+  document.body.appendChild(trap);
+
+  /* === STYLE ANIMATION === */
+  const style = document.createElement("style");
+  style.innerHTML = `
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.6; }
+      100% { opacity: 1; }
+    }
+  `;
+  document.head.appendChild(style);
+
+  /* === MUNCUL SETELAH 1 DETIK === */
+  setTimeout(() => {
+    trap.style.opacity = "1";
+  }, 1000);
+
+  /* === GLITCH SHAKE === */
+  const glitch = setInterval(() => {
+    const x = Math.random() * 10 - 5;
+    const y = Math.random() * 10 - 5;
+    trap.style.transform = `translate(${x}px, ${y}px)`;
+  }, 70);
+
+  /* === KATA-KATA TAMBAHAN (BERGANTI) === */
+  const horrorLines = [
+    "LAYAR INI MELIHAT BALIK",
+    "KAMU HARUSNYA TUTUP TADI",
+    "DATA KAMU SUDAH DIBACA",
+    "TIDAK ADA TOMBOL KELUAR",
+    "INI BUKAN ERROR",
+    "INI DISENGAJA",
+    "KAMU TELAT SADAR",
+    "SESI TIDAK PRIVAT",
+    "MEREKA SUDAH DI SINI"
+  ];
+
+  const sub = trap.querySelector("#trap-sub");
+  let idx = 0;
+
+  const textLoop = setInterval(() => {
+    sub.textContent = horrorLines[idx % horrorLines.length];
+    idx++;
+  }, 900);
+
+  /* === HILANG SETELAH 7 DETIK TOTAL === */
+  setTimeout(() => {
+    clearInterval(glitch);
+    clearInterval(textLoop);
+    trap.style.opacity = "0";
+    trap.style.transform = "";
+    setTimeout(() => trap.remove(), 800);
+  }, 8000); // total tampil ±7 detik
+});
+
 
 </script>
 
