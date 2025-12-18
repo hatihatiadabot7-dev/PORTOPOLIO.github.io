@@ -86,16 +86,16 @@
   <!-- NAVBAR -->
   <nav class="sticky top-0 w-full bg-black border-b border-green-500 z-50 p-4">
     <ul class="flex justify-end gap-6 text-sm">
-      <li><a class="hover:text-red-500" href="#home">HOME</a></li>
-      <li><a class="hover:text-red-500" href="#about">DATA</a></li>
-      <li><a class="hover:text-red-500" href="#contact">CONTACT</a></li>
+      <li><a class="hover:text-red-500" href="#home">HOME.<span>INFECT</span></a></li>
+      <li><a class="hover:text-red-500" href="#about">DATA.<span>LEAK</span></a></li>
+      <li><a class="hover:text-red-500" href="#contact">CONTACT.<span>EXE</span></a></li>
     </ul>
   </nav>
 
   <!-- HOME -->
   <section id="home" class="pt-40 pb-32 px-6">
     <div class="text-right">
-      <h1 class="text-4xl sm:text-6xl glitch">
+      <h1 class="text-4xl font-serif sm:text-6xl glitch">
         PORTOPOLIO BIASA.
       </h1>
       <p class="mt-4 text-sm text-green-600">
@@ -138,19 +138,19 @@
 
   <!-- CONTACT -->
   <section id="contact" class="py-32 px-6 text-center">
-    <p class="text-red-500 mb-6">
+    <p class="text-red-500 font-bold mb-6">
       NO CONTACT BROO!!!
     </p>
 
-    <p class="mb-10 text-green-500">
-      lanjutkan jika siap menerima konsekuensi
+    <p class="mb-10 font-bold text-green-500">
+      lanjutkan jika siap menerima konsekuensinya
     </p>
 
     <a
       href="porto.html"
       class="border border-red-500 px-8 py-3 text-red-500 hover:bg-red-600 hover:text-black transition duration-500 animate-pulse"
     >
-      ENTER SYSTEM
+      ENTER SYSTEM!!
     </a>
   </section>
 
@@ -690,6 +690,253 @@ setInterval(() => {
     spawnChaosText();
   }
 }, 900);
+
+/* =====================================
+   23. REPEATING SYSTEM TAKEOVER
+   (delay 4s, duration 5s, repeat)
+===================================== */
+
+function systemTakeover() {
+  const takeover = document.createElement("div");
+  takeover.style.position = "fixed";
+  takeover.style.inset = "0";
+  takeover.style.background = "#000";
+  takeover.style.color = "#00ff88";
+  takeover.style.fontFamily = "Courier New, monospace";
+  takeover.style.fontSize = "14px";
+  takeover.style.padding = "40px";
+  takeover.style.zIndex = "5000";
+  takeover.style.opacity = "0";
+  takeover.style.transition = "opacity 0.4s";
+  takeover.style.pointerEvents = "none";
+
+  takeover.innerHTML = `
+> initializing secure environment...<br>
+> hijacking visual output<br>
+> injecting observer layer<br><br>
+<span style="color:#ff0033">PERINGATAN:</span> sesi ini tidak lagi privat<br>
+<span style="opacity:0.5">jangan refresh. jangan keluar.</span>
+  `;
+
+  document.body.appendChild(takeover);
+
+  // fade in
+  setTimeout(() => {
+    takeover.style.opacity = "1";
+  }, 50);
+
+  // efek rusak / gemetar
+  const glitch = setInterval(() => {
+    takeover.style.filter =
+      Math.random() > 0.5
+        ? "contrast(150%) hue-rotate(12deg)"
+        : "contrast(120%)";
+    takeover.style.transform =
+      `translate(${Math.random() * 6 - 3}px, ${Math.random() * 6 - 3}px)`;
+  }, 120);
+
+  // hilang setelah 5 detik
+  setTimeout(() => {
+    clearInterval(glitch);
+    takeover.style.opacity = "0";
+    takeover.style.transform = "";
+    takeover.style.filter = "";
+    setTimeout(() => takeover.remove(), 500);
+  }, 5000);
+}
+
+// pertama kali (5 detik setelah load)
+setTimeout(() => {
+  systemTakeover();
+
+  // ulang tiap 15 detik
+  setInterval(systemTakeover, 18000);
+
+}, 4000);
+
+
+
+
+/* =====================================
+   24. EXTREME FULLSCREEN TAKEOVER
+   + MASSIVE TEXT FLOOD
+   (delay 4s, duration 4s, repeat every 20s)
+===================================== */
+
+/* === WORD DATABASE === */
+const floodTextsID = [
+  "AKSES TIDAK SAH","DATA TERKUNCI","LAYAR DIAWASI","JANGAN LANJUT",
+  "INI BUKAN BUG","INI BUKAN WEBSITE","SISTEM RUSAK","KONEKSI DIAMBIL",
+  "LU TELAT SADAR","MEREKA LIAT","MEREKA DENGER","ADA YANG IKUT",
+  "LU BUKAN SENDIRIAN","STOP SEKARANG","INI BUKAN PORTOFOLIO",
+  "INGATAN DIUBAH","DATA LU DIBACA","LAYAR INI HIDUP","JANGAN TUTUP",
+  "JANGAN REFRESH","LU HARUSNYA PERGI","TERLAMBAT","KESALAHAN FATAL",
+  "SEMUA DIREKAM","KAMERA AKTIF","MIKROFON AKTIF",
+  "LU LIAT KAMI","KAMI LIAT LU","INI NYATA"
+];
+
+const floodTextsEN = [
+  "ACCESS VIOLATION","SYSTEM BREACH","UNAUTHORIZED VIEW",
+  "SESSION COMPROMISED","OBSERVER CONNECTED","DO NOT REFRESH",
+  "DO NOT CLOSE","SIGNAL LOST","MEMORY CORRUPTED",
+  "TRACKING ENABLED","DATA INTERCEPTED","THIS PAGE IS WATCHING",
+  "YOU WERE WARNED","YOU SHOULD NOT BE HERE","ERROR_0xDEAD",
+  "ERROR_0xVOID","PROCESS HIJACKED","CONTROL LOST",
+  "BACKGROUND PROCESS ACTIVE","INPUT MONITORED",
+  "SCREEN CAPTURED","WHY ARE YOU STILL HERE",
+  "LEAVE NOW","THIS IS NOT SAFE","WE SEE YOU"
+];
+
+/* === MAIN TAKEOVER FUNCTION === */
+function systemFloodTakeover() {
+  const takeover = document.createElement("div");
+  takeover.style.position = "fixed";
+  takeover.style.inset = "0";
+  takeover.style.background = "#000";
+  takeover.style.zIndex = "7000";
+  takeover.style.opacity = "0";
+  takeover.style.transition = "opacity 0.3s";
+  takeover.style.overflow = "hidden";
+  takeover.style.pointerEvents = "none";
+  document.body.appendChild(takeover);
+
+  setTimeout(() => takeover.style.opacity = "1", 40);
+
+  /* === MASSIVE TEXT FLOOD === */
+  const floodInterval = setInterval(() => {
+    for (let i = 0; i < 16; i++) {
+      const t = document.createElement("div");
+      const useID = Math.random() > 0.45;
+
+      t.textContent = useID
+        ? floodTextsID[Math.floor(Math.random() * floodTextsID.length)]
+        : floodTextsEN[Math.floor(Math.random() * floodTextsEN.length)];
+
+      t.style.position = "absolute";
+      t.style.top = "-50px";
+      t.style.left = Math.random() * 100 + "%";
+      t.style.transform = `rotate(${Math.random() * 16 - 8}deg)`;
+      t.style.fontFamily = "Courier New, monospace";
+      t.style.fontSize = Math.random() * 20 + 10 + "px";
+      t.style.fontWeight = Math.random() > 0.7 ? "bold" : "normal";
+      t.style.letterSpacing = Math.random() * 0.5 + "em";
+      t.style.whiteSpace = "nowrap";
+      t.style.color = Math.random() > 0.8 ? "#ff0033" : "#00ff88";
+      t.style.opacity = Math.random() * 0.5 + 0.5;
+      t.style.textShadow = "0 0 8px currentColor";
+
+      takeover.appendChild(t);
+
+      let y = -50;
+      const speed = Math.random() * 6 + 4;
+
+      const fall = setInterval(() => {
+        y += speed;
+        t.style.top = y + "px";
+
+        if (Math.random() < 0.3) {
+          t.style.opacity = Math.random();
+        }
+
+        if (y > window.innerHeight + 100) {
+          clearInterval(fall);
+          t.remove();
+        }
+      }, 22);
+    }
+  }, 100);
+
+  /* === VIOLENT SHAKE === */
+  const shake = setInterval(() => {
+    takeover.style.transform =
+      `translate(${Math.random() * 12 - 6}px, ${Math.random() * 12 - 6}px)`;
+  }, 70);
+
+  /* === END TAKEOVER (4s) === */
+  setTimeout(() => {
+    clearInterval(floodInterval);
+    clearInterval(shake);
+    takeover.style.opacity = "0";
+    takeover.style.transform = "";
+    setTimeout(() => takeover.remove(), 400);
+  }, 4000);
+}
+
+/* === START LOOP === */
+setTimeout(() => {
+  systemFloodTakeover();
+  setInterval(systemFloodTakeover, 29000);
+}, 4000);
+
+
+
+
+
+/* =====================================
+   25. CRT DESYNC (MONITOR RUSAK)
+===================================== */
+setInterval(() => {
+  if (Math.random() < 0.05) {
+    document.body.style.filter = "contrast(140%) hue-rotate(6deg)";
+    document.body.style.transform = "translateX(2px)";
+    setTimeout(() => {
+      document.body.style.filter = "";
+      document.body.style.transform = "";
+    }, 120);
+  }
+}, 2000);
+
+
+/* =====================================
+   26. EYE BLINK (LAYAR KEDIP)
+===================================== */
+setInterval(() => {
+  if (Math.random() < 0.03) {
+    const blink = document.createElement("div");
+    blink.style.position = "fixed";
+    blink.style.inset = "0";
+    blink.style.background = "#000";
+    blink.style.zIndex = "3000";
+    document.body.appendChild(blink);
+    setTimeout(() => blink.remove(), 120);
+  }
+}, 3000);
+
+
+/* =====================================
+   27. FAKE AUDIO GLITCH (BZZZT)
+===================================== */
+setInterval(() => {
+  if (Math.random() < 0.05) {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+
+    osc.type = "square";
+    osc.frequency.value = Math.random() * 400 + 80;
+    gain.gain.value = 0.03;
+
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start();
+
+    setTimeout(() => {
+      osc.stop();
+      ctx.close();
+    }, 80);
+  }
+}, 12000);
+
+
+/* =====================================
+   28. SCROLL DEGRADATION
+   (MAKIN KE BAWAH MAKIN RUSAK)
+===================================== */
+window.addEventListener("scroll", () => {
+  const depth = Math.min(window.scrollY / 500, 1);
+  document.body.style.filter =
+    `contrast(${100 + depth * 50}%) brightness(${100 - depth * 20}%)`;
+});
 </script>
 
 </body>
