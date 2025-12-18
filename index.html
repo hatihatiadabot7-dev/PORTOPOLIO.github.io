@@ -84,19 +84,17 @@
   <div class="red-flash"></div>
 
   <!-- NAVBAR -->
-<nav id="navSystem"
-  class="fixed top-0 left-0 w-full bg-black border-b border-green-500 z-[9000] p-4">
+<nav class="sticky top-0 w-full bg-black border-b border-green-500 z-50 p-4">
   <ul class="flex justify-end gap-6 text-sm">
-    <li><a class="hover:text-red-500" href="#home">HOME.EXE</a></li>
-    <li><a class="hover:text-red-500" href="#about">DATA.LOG</a></li>
-    <li><a class="hover:text-red-500" href="#contact">CONTACT.NULL</a></li>
+    <li><a id="menu-home" class="hover:text-red-500" href="#home">HOME.<span>EXE</span></a></li>
+    <li><a id="menu-data" class="hover:text-red-500" href="#about">DATA.<span>LOG</span></a></li>
+    <li><a id="menu-contact" class="hover:text-red-500" href="#contact">CONTACT.<span>VOID</span></a></li>
   </ul>
 </nav>
 
 
-
   <!-- HOME -->
-  <section id="home" class="pt-32 pb-32 px-6">
+  <section id="home" class="pt-40 pb-32 px-6">
     <div class="text-right">
       <h1 class="text-4xl font-serif sm:text-6xl glitch">
         PORTOPOLIO BIASA.
@@ -161,25 +159,6 @@
 
 
   <script>
-  // ===============================
-  // NAV BIAR RUSAK
-  // ===============================
-  let lastY = window.scrollY;
-const nav = document.getElementById("navSystem");
-
-window.addEventListener("scroll", () => {
-  const currentY = window.scrollY;
-
-  if (currentY > lastY && currentY > 80) {
-    nav.style.transform = "translateY(-100%)";
-  } else {
-    nav.style.transform = "translateY(0)";
-  }
-
-  lastY = currentY;
-});
-
-
   // ===============================
   // 1. RANDOM GLITCH TITLE
   // ===============================
