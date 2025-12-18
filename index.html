@@ -838,96 +838,122 @@ setTimeout(() => {
    (delay 4s, duration 4s, repeat every 20s)
 ===================================== */
 
-/* === WORD DATABASE === */
+/* =====================================
+   WORD DATABASE
+===================================== */
 const floodTextsID = [
   "AKSES TIDAK SAH","DATA TERKUNCI","LAYAR DIAWASI","JANGAN LANJUT",
   "INI BUKAN BUG","INI BUKAN WEBSITE","SISTEM RUSAK","KONEKSI DIAMBIL",
   "LU TELAT SADAR","MEREKA LIAT","MEREKA DENGER","ADA YANG IKUT",
-  "LU BUKAN SENDIRIAN","STOP SEKARANG","INI BUKAN PORTOFOLIO",
-  "INGATAN DIUBAH","DATA LU DIBACA","LAYAR INI HIDUP","JANGAN TUTUP",
-  "JANGAN REFRESH","LU HARUSNYA PERGI","TERLAMBAT","KESALAHAN FATAL",
+  "LU BUKAN SENDIRIAN","STOP SEKARANG","INGATAN DIUBAH",
+  "DATA LU DIBACA","LAYAR INI HIDUP","JANGAN TUTUP",
   "SEMUA DIREKAM","KAMERA AKTIF","MIKROFON AKTIF",
-  "LU LIAT KAMI","KAMI LIAT LU","INI NYATA"
+  "KAMI LIAT LU","INI NYATA","TERLAMBAT"
 ];
 
 const floodTextsEN = [
   "ACCESS VIOLATION","SYSTEM BREACH","UNAUTHORIZED VIEW",
-  "SESSION COMPROMISED","OBSERVER CONNECTED","DO NOT REFRESH",
-  "DO NOT CLOSE","SIGNAL LOST","MEMORY CORRUPTED",
-  "TRACKING ENABLED","DATA INTERCEPTED","THIS PAGE IS WATCHING",
-  "YOU WERE WARNED","YOU SHOULD NOT BE HERE","ERROR_0xDEAD",
-  "ERROR_0xVOID","PROCESS HIJACKED","CONTROL LOST",
-  "BACKGROUND PROCESS ACTIVE","INPUT MONITORED",
-  "SCREEN CAPTURED","WHY ARE YOU STILL HERE",
-  "LEAVE NOW","THIS IS NOT SAFE","WE SEE YOU"
+  "SESSION COMPROMISED","OBSERVER CONNECTED",
+  "MEMORY CORRUPTED","TRACKING ENABLED",
+  "THIS PAGE IS WATCHING","YOU WERE WARNED",
+  "ERROR_0xDEAD","PROCESS HIJACKED",
+  "INPUT MONITORED","SCREEN CAPTURED",
+  "THIS IS NOT SAFE","WE SEE YOU"
 ];
 
-/* === MAIN TAKEOVER FUNCTION === */
+/* =====================================
+   MAIN TAKEOVER FUNCTION
+===================================== */
 function systemFloodTakeover() {
+  const isMobile = window.innerWidth < 640;
+
   const takeover = document.createElement("div");
   takeover.style.position = "fixed";
   takeover.style.inset = "0";
   takeover.style.background = "#000";
-  takeover.style.zIndex = "7000";
+  takeover.style.zIndex = "9999";
   takeover.style.opacity = "0";
   takeover.style.transition = "opacity 0.3s";
   takeover.style.overflow = "hidden";
   takeover.style.pointerEvents = "none";
   document.body.appendChild(takeover);
 
-  setTimeout(() => takeover.style.opacity = "1", 40);
+  setTimeout(() => takeover.style.opacity = "1", 50);
 
-  /* === MASSIVE TEXT FLOOD === */
+  /* =====================================
+     TEXT FLOOD LOOP
+  ===================================== */
   const floodInterval = setInterval(() => {
-    for (let i = 0; i < 16; i++) {
-      const t = document.createElement("div");
-      const useID = Math.random() > 0.45;
+    const spawnCount = isMobile ? 6 : 14;
 
+    for (let i = 0; i < spawnCount; i++) {
+      const t = document.createElement("div");
+
+      const useID = Math.random() > 0.45;
       t.textContent = useID
         ? floodTextsID[Math.floor(Math.random() * floodTextsID.length)]
         : floodTextsEN[Math.floor(Math.random() * floodTextsEN.length)];
 
       t.style.position = "absolute";
-      t.style.top = "-50px";
+      t.style.top = "-40px";
       t.style.left = Math.random() * 100 + "%";
-      t.style.transform = `rotate(${Math.random() * 16 - 8}deg)`;
       t.style.fontFamily = "Courier New, monospace";
-      t.style.fontSize = Math.random() * 20 + 10 + "px";
-      t.style.fontWeight = Math.random() > 0.7 ? "bold" : "normal";
-      t.style.letterSpacing = Math.random() * 0.5 + "em";
       t.style.whiteSpace = "nowrap";
       t.style.color = Math.random() > 0.8 ? "#ff0033" : "#00ff88";
-      t.style.opacity = Math.random() * 0.5 + 0.5;
-      t.style.textShadow = "0 0 8px currentColor";
+      t.style.textShadow = "0 0 6px currentColor";
+      t.style.opacity = Math.random() * 0.4 + 0.6;
+
+      /* RESPONSIVE FONT */
+      t.style.fontSize = isMobile
+        ? Math.random() * 2 + 2 + "vw"
+        : Math.random() * 18 + 10 + "px";
+
+      /* RESPONSIVE ROTATION */
+      const rot = isMobile
+        ? Math.random() * 6 - 3
+        : Math.random() * 16 - 8;
+      t.style.transform = `rotate(${rot}deg)`;
+
+      /* RESPONSIVE SPACING */
+      t.style.letterSpacing = isMobile
+        ? Math.random() * 0.15 + "em"
+        : Math.random() * 0.5 + "em";
 
       takeover.appendChild(t);
 
-      let y = -50;
-      const speed = Math.random() * 6 + 4;
+      let y = -40;
+      const speed = isMobile
+        ? Math.random() * 2 + 2
+        : Math.random() * 5 + 4;
 
       const fall = setInterval(() => {
         y += speed;
         t.style.top = y + "px";
 
-        if (Math.random() < 0.3) {
-          t.style.opacity = Math.random();
+        if (Math.random() < 0.25) {
+          t.style.opacity = Math.random() * 0.7;
         }
 
-        if (y > window.innerHeight + 100) {
+        if (y > window.innerHeight + 80) {
           clearInterval(fall);
           t.remove();
         }
-      }, 22);
+      }, 30);
     }
-  }, 100);
+  }, isMobile ? 160 : 100);
 
-  /* === VIOLENT SHAKE === */
+  /* =====================================
+     SCREEN SHAKE (MOBILE SAFE)
+  ===================================== */
   const shake = setInterval(() => {
+    const amp = isMobile ? 3 : 6;
     takeover.style.transform =
-      `translate(${Math.random() * 12 - 6}px, ${Math.random() * 12 - 6}px)`;
-  }, 70);
+      `translate(${Math.random() * amp - amp/2}px, ${Math.random() * amp - amp/2}px)`;
+  }, isMobile ? 120 : 70);
 
-  /* === END TAKEOVER (4s) === */
+  /* =====================================
+     END TAKEOVER (4s)
+  ===================================== */
   setTimeout(() => {
     clearInterval(floodInterval);
     clearInterval(shake);
@@ -937,7 +963,9 @@ function systemFloodTakeover() {
   }, 4000);
 }
 
-/* === START LOOP === */
+/* =====================================
+   START LOOP
+===================================== */
 setTimeout(() => {
   systemFloodTakeover();
   setInterval(systemFloodTakeover, 20000);
