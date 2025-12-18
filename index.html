@@ -84,13 +84,14 @@
   <div class="red-flash"></div>
 
   <!-- NAVBAR -->
-  <nav class="sticky top-0 w-full bg-black border-b border-green-500 z-50 p-4">
-    <ul class="flex justify-end gap-6 text-sm">
-      <li><a class="hover:text-red-500" href="#home">HOME.<span>INFECT</span></a></li>
-      <li><a class="hover:text-red-500" href="#about">DATA.<span>LEAK</span></a></li>
-      <li><a class="hover:text-red-500" href="#contact">CONTACT.<span>EXE</span></a></li>
-    </ul>
-  </nav>
+<nav class="sticky top-0 w-full bg-black border-b border-green-500 z-50 p-4">
+  <ul class="flex justify-end gap-6 text-sm">
+    <li><a id="menu-home" class="hover:text-red-500" href="#home">HOME.<span>EXE</span></a></li>
+    <li><a id="menu-data" class="hover:text-red-500" href="#about">DATA.<span>LOG</span></a></li>
+    <li><a id="menu-contact" class="hover:text-red-500" href="#contact">CONTACT.<span>VOID</span></a></li>
+  </ul>
+</nav>
+
 
   <!-- HOME -->
   <section id="home" class="pt-40 pb-32 px-6">
@@ -873,18 +874,66 @@ setTimeout(() => {
 
 
 /* =====================================
-   25. CRT DESYNC (MONITOR RUSAK)
+   25. DYNAMIC NAV NAME CORRUPTION
+   (menu berubah tiap beberapa detik)
 ===================================== */
-setInterval(() => {
-  if (Math.random() < 0.05) {
-    document.body.style.filter = "contrast(140%) hue-rotate(6deg)";
-    document.body.style.transform = "translateX(2px)";
+
+const navVariants = {
+  home: [
+    "HOME.<span>EXE</span>",
+    "ACCESS.<span>GRANTED</span>",
+    "ENTRY.<span>WATCH</span>",
+    "INIT.<span>SESSION</span>",
+    "SYSTEM.<span>OPEN</span>",
+    "YOU.<span>ENTERED</span>"
+  ],
+  data: [
+    "DATA.<span>LOG</span>",
+    "MEMORY.<span>CORRUPT</span>",
+    "ARCHIVE.<span>BLACK</span>",
+    "FILES.<span>LOCKED</span>",
+    "RECORD.<span>LEAK</span>",
+    "TRACE.<span>ACTIVE</span>"
+  ],
+  contact: [
+    "CONTACT.<span>VOID</span>",
+    "SIGNAL.<span>LOST</span>",
+    "EXIT.<span>FAIL</span>",
+    "NO.<span>ESCAPE</span>",
+    "OBSERVER.<span>ONLINE</span>",
+    "LEAVE.<span>TOO LATE</span>"
+  ]
+};
+
+const homeEl = document.getElementById("menu-home");
+const dataEl = document.getElementById("menu-data");
+const contactEl = document.getElementById("menu-contact");
+
+function corruptNav() {
+  homeEl.innerHTML =
+    navVariants.home[Math.floor(Math.random() * navVariants.home.length)];
+  dataEl.innerHTML =
+    navVariants.data[Math.floor(Math.random() * navVariants.data.length)];
+  contactEl.innerHTML =
+    navVariants.contact[Math.floor(Math.random() * navVariants.contact.length)];
+
+  // glitch kecil tiap ganti
+  [homeEl, dataEl, contactEl].forEach(el => {
+    el.style.textShadow = "0 0 8px red";
+    el.style.opacity = "0.6";
     setTimeout(() => {
-      document.body.style.filter = "";
-      document.body.style.transform = "";
-    }, 120);
-  }
+      el.style.textShadow = "";
+      el.style.opacity = "";
+    }, 200);
+  });
+}
+
+/* delay awal biar gak langsung */
+setTimeout(() => {
+  corruptNav();
+  setInterval(corruptNav, 2000); // ganti tiap 2 detik
 }, 2000);
+
 
 
 /* =====================================
@@ -937,6 +986,8 @@ window.addEventListener("scroll", () => {
   document.body.style.filter =
     `contrast(${100 + depth * 50}%) brightness(${100 - depth * 20}%)`;
 });
+
+
 </script>
 
 </body>
