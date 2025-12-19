@@ -1196,7 +1196,216 @@ window.addEventListener("load", function () {
   }, 8000);
 });
 
+/* =====================================
+   30. REALITY DESYNC
+===================================== */
+setInterval(() => {
+  if (Math.random() < 0.04) {
+    document.body.style.transition = "filter 0.2s, transform 0.2s";
+    document.body.style.filter = "blur(1px) contrast(160%)";
+    document.body.style.transform = "scale(1.01)";
+    setTimeout(() => {
+      document.body.style.filter = "";
+      document.body.style.transform = "";
+    }, 180);
+  }
+}, 5000);
 
+/* =====================================
+   31. FAKE CAMERA INDICATOR
+===================================== */
+const camDot = document.createElement("div");
+camDot.style.position = "fixed";
+camDot.style.top = "10px";
+camDot.style.right = "10px";
+camDot.style.width = "8px";
+camDot.style.height = "8px";
+camDot.style.borderRadius = "50%";
+camDot.style.background = "#ff0033";
+camDot.style.boxShadow = "0 0 10px red";
+camDot.style.opacity = "0";
+camDot.style.zIndex = "9999";
+document.body.appendChild(camDot);
+
+setInterval(() => {
+  if (Math.random() < 0.2) {
+    camDot.style.opacity = "1";
+    setTimeout(() => camDot.style.opacity = "0", 1200);
+  }
+}, 7000);
+
+/* =====================================
+   33. TEXT BREATHING
+===================================== */
+setInterval(() => {
+  document.querySelectorAll("h1,h2,h3,p,span").forEach(el => {
+    if (Math.random() < 0.02) {
+      el.style.transition = "letter-spacing 1.5s";
+      el.style.letterSpacing = "0.35em";
+      setTimeout(() => {
+        el.style.letterSpacing = "";
+      }, 1500);
+    }
+  });
+}, 6000);
+
+/* =====================================
+   34. VOID FLASH
+===================================== */
+setInterval(() => {
+  if (Math.random() < 0.025) {
+    const v = document.createElement("div");
+    v.style.position = "fixed";
+    v.style.inset = "0";
+    v.style.background = "#000";
+    v.style.zIndex = "9998";
+    document.body.appendChild(v);
+    setTimeout(() => v.remove(), 90);
+  }
+}, 4000);
+
+/* =====================================
+   36. AWARENESS EFFECT
+===================================== */
+let awareness = 0;
+
+setInterval(() => {
+  awareness++;
+  if (awareness > 6) {
+    document.body.style.filter = "contrast(135%) brightness(88%)";
+  }
+}, 25000);
+
+/* =====================================
+   37. FALSE CALM → COLLAPSE
+===================================== */
+setTimeout(() => {
+  document.body.style.transition = "filter 2s";
+  document.body.style.filter = "grayscale(1) brightness(105%)";
+}, 120000); // 2 menit tenang palsu
+
+setTimeout(() => {
+  document.body.style.filter = "contrast(170%) brightness(75%)";
+}, 140000); // jatuh mendadak
+
+/* =====================================
+   38. TIME DESYNC
+===================================== */
+setInterval(() => {
+  if (Math.random() < 0.08) {
+    const fake = new Date(Date.now() - Math.random()*600000);
+    document.title = fake.toLocaleTimeString() + " — SESSION ACTIVE";
+  }
+}, 6000);
+
+/* =====================================
+   39. PERIPHERAL VISION TEXT
+===================================== */
+const peripheralTexts = [
+  "itu bukan bayangan",
+  "jangan fokus ke tengah",
+  "ada di sisi layar",
+  "kamu lihat juga kan",
+  "bergerak barusan"
+];
+
+setInterval(() => {
+  if (Math.random() < 0.07) {
+    const p = document.createElement("div");
+    p.textContent = peripheralTexts[Math.floor(Math.random()*peripheralTexts.length)];
+    p.style.position = "fixed";
+    p.style.top = Math.random() < 0.5 ? "10%" : "85%";
+    p.style.left = Math.random() < 0.5 ? "5%" : "80%";
+    p.style.fontSize = "10px";
+    p.style.opacity = "0";
+    p.style.color = "#00ff88";
+    p.style.zIndex = "999";
+    p.style.transition = "opacity 1.2s";
+    document.body.appendChild(p);
+
+    setTimeout(() => p.style.opacity = "0.5", 100);
+    setTimeout(() => {
+      p.style.opacity = "0";
+      setTimeout(() => p.remove(), 1000);
+    }, 3000);
+  }
+}, 8000);
+
+/* =====================================
+   40. BEHAVIOR MIRROR
+===================================== */
+let fastScrollCount = 0;
+let lastY = window.scrollY;
+
+window.addEventListener("scroll", () => {
+  const delta = Math.abs(window.scrollY - lastY);
+  lastY = window.scrollY;
+
+  if (delta > 120) fastScrollCount++;
+
+  if (fastScrollCount > 6) {
+    document.body.style.filter = "contrast(150%) hue-rotate(15deg)";
+    setTimeout(() => {
+      document.body.style.filter = "";
+      fastScrollCount = 0;
+    }, 800);
+  }
+});
+
+/* =====================================
+   42. FINAL MESSAGE — ONE TIME (1 MENIT)
+===================================== */
+setTimeout(() => {
+  const end = document.createElement("div");
+  end.innerHTML = `
+    <div style="
+      font-size:clamp(1.2rem,5vw,2.2rem);
+      letter-spacing:0.35em;
+      color:#ff0033;
+      text-shadow:0 0 25px red;
+    ">
+      KAMU TIDAK HARUS SAMPAI SINI
+    </div>
+    <div style="
+      margin-top:20px;
+      font-size:0.75rem;
+      color:#00ff88;
+      opacity:0.7;
+      letter-spacing:0.25em;
+    ">
+      tapi kamu tetap membaca
+    </div>
+  `;
+
+  end.style.position = "fixed";
+  end.style.inset = "0";
+  end.style.display = "flex";
+  end.style.flexDirection = "column";
+  end.style.alignItems = "center";
+  end.style.justifyContent = "center";
+  end.style.background = "#000";
+  end.style.zIndex = "10000";
+  end.style.opacity = "0";
+  end.style.transition = "opacity 3s";
+  end.style.pointerEvents = "none";
+
+  document.body.appendChild(end);
+
+  // fade in
+  setTimeout(() => end.style.opacity = "1", 200);
+}, 60000); // 1 menit
+
+/* =====================================
+   43. AFTERMATH STATE
+===================================== */
+setTimeout(() => {
+  setInterval(() => {
+    document.body.style.filter =
+      Math.random() < 0.5
+        ? "contrast(120%) brightness(90%)"
+        : "contrast(110%)";
+  }, 12000);
+}, 185000);
 
 </script>
 
